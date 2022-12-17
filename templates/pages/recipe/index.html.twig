@@ -25,7 +25,7 @@
       <th scope="col">Nom</th>
       <th scope="col">Prix</th>
       <th scope="col">Difficulte</th>
-      <th scope="col">Date de creation</th>
+      <th scope="col">Date de création</th>
       <th scope="col">Edition</th>
       <th scope="col">Suppression</th>
     </tr>
@@ -37,14 +37,14 @@
       <td>{{ recipe.name }}</td>
       <td>
         {%if recipe.price is null %}
-            Non renseigne
+            Non renseigné
         {%else%}
             {{ recipe.price }} €
         {%endif%}
     </td>
     <td>
         {%if recipe.difficulty is null %}
-            Non renseigne
+            Non renseignée
         {%else%}
             {{ recipe.difficulty }}
         {%endif%}</td>

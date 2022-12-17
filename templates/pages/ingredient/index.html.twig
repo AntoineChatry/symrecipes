@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SymRecipe - Mes Ingredients{% endblock %}
+{% block title %}SymRecipe - Mes Ingrédients{% endblock %}
 
 {% block body %}
 <div class="container mt-4">
     {%if not ingredients.items is same as ([])%}
-    <h1>Mes Ingredients</h1>
-    <a href="{{ path('ingredient.new') }}" class="btn btn-primary mb-3">Ajouter un ingredient</a>
+    <h1>Mes Ingrédient</h1>
+    <a href="{{ path('ingredient.new') }}" class="btn btn-primary mb-3">Ajouter un ingrédient</a>
     {# read and display just one flash message type#}
     {% for message in app.flashes('success')%}
         <div class="alert alert-success mt-4">
@@ -14,7 +14,7 @@
         </div>
     {% endfor %}
     <div class="count">
-        <h4>Vous avez {{ ingredients.getTotalItemCount }} ingredients</h4>
+        <h4>Vous avez {{ ingredients.getTotalItemCount }} ingrédients</h4>
     </div>
     <table class="table table-hover mt-4">
   <thead>
@@ -22,7 +22,7 @@
       <th scope="col">Numero</th>
       <th scope="col">Nom</th>
       <th scope="col">Prix</th>
-      <th scope="col">Date de creation</th>
+      <th scope="col">Date de création</th>
       <th scope="col">Edition</th>
       <th scope="col">Suppression</th>
     </tr>
@@ -46,7 +46,7 @@
     {{ knp_pagination_render(ingredients) }}
 </div>
 {% else %}
-    <h4>Vous n'avez pas encore d'ingredients</h4>
+    <h4>Vous n'avez pas encore d'ingrédients</h4>
 {% endif %}
 </div>
 {% endblock %}
