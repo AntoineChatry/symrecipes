@@ -51,7 +51,7 @@ class RecipeController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    #[Route('/recette/publique', name: 'recipe.public', methods: ['GET'])]
+    #[Route('/recette/communaute', name: 'recipe.community', methods: ['GET'])]
     public function indexPublic(RecipeRepository $repository,PaginatorInterface $paginator,Request $request): Response 
     {
         $recipes = $paginator->paginate(
@@ -60,7 +60,7 @@ class RecipeController extends AbstractController
             10
         );
 
-        return $this->render('pages/recipe/index_public.html.twig', [
+        return $this->render('pages/recipe/community.html.twig', [
             'recipes' => $recipes
         ]);
     }
@@ -128,6 +128,7 @@ class RecipeController extends AbstractController
      * @return Response
      */
     #[Route('/recette/suppression/{id}', name: 'recipe.delete', methods: ['GET'])]
+    #[Security("is_granted('ROLE_USER') and user === recipe.getUser()")]
     public function delete(Recipe $recipe, EntityManagerInterface $manager): Response
     {
         if (!$recipe) {

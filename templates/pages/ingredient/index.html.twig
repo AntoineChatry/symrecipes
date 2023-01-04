@@ -4,17 +4,18 @@
 
 {% block body %}
 <div class="container mt-4">
-    {%if not ingredients.items is same as ([])%}
-    <h1>Mes Ingrédient</h1>
-    <a href="{{ path('ingredient.new') }}" class="btn btn-primary mb-3">Ajouter un ingrédient</a>
-    {# read and display just one flash message type#}
-    {% for message in app.flashes('success')%}
+  {% for message in app.flashes('success')%}
         <div class="alert alert-success mt-4">
             {{ message }}
         </div>
     {% endfor %}
+    {%if not ingredients.items is same as ([])%}
+    <h1>Mes Ingrédient</h1>
+    <a href="{{ path('ingredient.new') }}" class="btn btn-primary mb-3">Ajouter un ingrédient</a>
+    {# read and display just one flash message type#}
+    
     <div class="count">
-        <h4>Vous avez {{ ingredients.getTotalItemCount }} ingrédients</h4>
+        <h4>Vous avez {{ ingredients.getTotalItemCount }} ingrédient(s)</h4>
     </div>
     <table class="table table-hover mt-4">
   <thead>
@@ -32,7 +33,7 @@
     <tr class="table-primary">
       <th scope="row">{{ingredient.id}}</th>
       <td>{{ ingredient.name }}</td>
-      <td>{{ ingredient.price }}</td>
+      <td>{{ ingredient.price|number_format(2,'.','.') }} €</td>
       <td> {{ingredient.createdAt|date("d/m/y")}} </td>
       <td><a href="{{ path('ingredient.edit', {'id': ingredient.id}) }}" class="btn btn-info">Editer</a></td>
       <td><a href="{{ path('ingredient.delete', {'id': ingredient.id}) }}" class="btn btn-warning">Supprimer</a></td>
@@ -47,6 +48,7 @@
 </div>
 {% else %}
     <h4>Vous n'avez pas encore d'ingrédients</h4>
+    <a href="{{ path('ingredient.new') }}" class="btn btn-primary mb-3">Ajouter un ingrédient</a>
 {% endif %}
 </div>
 {% endblock %}
