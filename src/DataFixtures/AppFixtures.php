@@ -10,6 +10,7 @@ use Faker\Generator;
 use App\Entity\Recipe;
 use App\Entity\Mark;
 use App\Entity\User;
+use App\Entity\Contact;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
@@ -77,6 +78,16 @@ class AppFixtures extends Fixture
                 $manager->persist($mark);
 
             }
+        }
+        //Contacts
+        for ($i=0; $i < 5 ; $i++) { 
+            $contact = new Contact();
+            $contact->setFullName($this->faker->name())
+                ->setEmail($this->faker->email())
+                ->setSubject('Demande n°'. ($i+1))
+                ->setMessage($this->faker->text);
+            
+            $manager->persist($contact);
         }
         $manager->flush();
     }
